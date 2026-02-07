@@ -18,7 +18,7 @@ namespace Books.Api.Controllers
             _service = service;
         }
 
-        // GET api/authors
+   
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAll()
@@ -26,8 +26,7 @@ namespace Books.Api.Controllers
             var data = _service.GetAll();
             return Ok(data);
         }
-
-        // GET api/authors/5
+   
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetById(int id)
@@ -42,8 +41,7 @@ namespace Books.Api.Controllers
                 return Content(HttpStatusCode.NotFound, ex.Message);
             }
         }
-
-        // POST api/authors
+      
         [HttpPost]
         [Route("")]
         public IHttpActionResult Create(CreateAuthorRequestDto dto)
@@ -58,12 +56,12 @@ namespace Books.Api.Controllers
             }
             catch (DbUpdateException)
             {
-                // muy probablemente email duplicado (IX_Email)
+               
                 return BadRequest("Ya existe un autor con ese correo electrónico.");
             }
         }
 
-        // PUT api/authors/5
+   
         [HttpPut]
         [Route("{id:int}")]
         public IHttpActionResult Update(int id, UpdateAuthorRequestDto dto)
@@ -86,7 +84,7 @@ namespace Books.Api.Controllers
             }
         }
 
-        // DELETE api/authors/5
+      
         [HttpDelete]
         [Route("{id:int}")]
         public IHttpActionResult Delete(int id)
