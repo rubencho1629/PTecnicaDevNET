@@ -67,8 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\AuthorResponseDto.cs" />
+    <Compile Include="DTOs\BookResponseDto.cs" />
     <Compile Include="DTOs\CreateAuthorRequestDto.cs" />
     <Compile Include="DTOs\CreateBookRequestDto.cs" />
+    <Compile Include="DTOs\UpdateAuthorRequestDto.cs" />
+    <Compile Include="DTOs\UpdateBookRequestDto.cs" />
     <Compile Include="Services\AuthorService.cs" />
     <Compile Include="Services\BookService.cs" />
     <Compile Include="Interfaces\IAuthorService.cs" />

@@ -126,16 +126,12 @@
     <Compile Include="Entities\Author.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Exceptions\AuthorNotRegisteredException.cs" />
+    <Compile Include="Exceptions\CannotDeleteAuthorWithBooksException.cs" />
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Exceptions\MaxBooksReachedException.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Interfaces\IAuthorRepository.cs" />
     <Compile Include="Interfaces\IBookRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
