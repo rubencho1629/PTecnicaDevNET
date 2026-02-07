@@ -12,7 +12,7 @@ namespace Books.Domain.Interfaces
         void Update(Author author);
         void Delete(int id);
 
-        // para validar integridad al borrar
+
         bool HasBooks(int authorId);
     }
 }
