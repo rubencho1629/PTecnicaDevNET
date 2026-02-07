@@ -1,0 +1,58 @@
+@model Books.Front.Models.AuthorVm
+@{
+    ViewBag.Title = "Nuevo autor";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Nuevo autor</h2>
+    <a class="btn btn-light" href="@Url.Action("Index")">Volver</a>
+</div>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.FullName, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.City, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(m => m.BirthDate, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.BirthDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                    @Html.ValidationMessageFor(m => m.BirthDate, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-12 d-flex gap-2 mt-2">
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                    <a class="btn btn-light" href="@Url.Action("Index")">Cancelar</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
