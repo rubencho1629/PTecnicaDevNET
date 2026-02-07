@@ -30,7 +30,7 @@ namespace Books.Application.Services
         {
             if (dto == null) throw new ArgumentNullException(nameof(dto));
 
-            // Autor existe
+        
             if (!_authorRepository.ExistsById(dto.AuthorId.Value))
                 throw new AuthorNotRegisteredException();
 
