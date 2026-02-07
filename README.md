@@ -328,8 +328,9 @@ Este proyecto fue desarrollado como **prueba técnica** con fines educativos y d
 
 ## 👤 Autor
 
-Desarrollado como prueba técnica para **Ruben HErnandez**
+Desarrollado como prueba técnica para **Ruben Hernandez**
 
 ---
+
 
 ⭐ **¡Gracias por revisar este proyecto!** ⭐
