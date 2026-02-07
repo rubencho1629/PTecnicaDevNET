@@ -21,27 +21,21 @@ namespace Books.Application.Services
             IAuthorRepository authorRepository,
             BooksSettings settings)
         {
-            if (bookRepository == null) throw new ArgumentNullException(nameof(bookRepository));
-            if (authorRepository == null) throw new ArgumentNullException(nameof(authorRepository));
-            if (settings == null) throw new ArgumentNullException(nameof(settings));
-
-            _bookRepository = bookRepository;
-            _authorRepository = authorRepository;
-            _settings = settings;
+            _bookRepository = bookRepository ?? throw new ArgumentNullException(nameof(bookRepository));
+            _authorRepository = authorRepository ?? throw new ArgumentNullException(nameof(authorRepository));
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
         }
 
-        // CREATE
         public int Create(CreateBookRequestDto dto)
         {
             if (dto == null) throw new ArgumentNullException(nameof(dto));
 
-            // Regla: autor debe existir
+            // Autor existe
             if (!_authorRepository.ExistsById(dto.AuthorId.Value))
                 throw new AuthorNotRegisteredException();
 
-            // Regla: máximo permitido
-            var currentCount = _bookRepository.Count();
-            if (currentCount >= _settings.MaxBooksAllowed)
+            // Máximo permitido
+            if (_bookRepository.Count() >= _settings.MaxBooksAllowed)
                 throw new MaxBooksReachedException();
 
             var book = new Book
@@ -57,7 +51,6 @@ namespace Books.Application.Services
             return book.Id;
         }
 
-        // READ ALL
         public IEnumerable<BookResponseDto> GetAll()
         {
             return _bookRepository.GetAll()
@@ -65,7 +58,6 @@ namespace Books.Application.Services
                 .ToList();
         }
 
-        // READ BY ID
         public BookResponseDto GetById(int id)
         {
             var entity = _bookRepository.GetById(id);
@@ -75,7 +67,6 @@ namespace Books.Application.Services
             return Map(entity);
         }
 
-        // UPDATE
         public void Update(int id, UpdateBookRequestDto dto)
         {
             if (dto == null) throw new ArgumentNullException(nameof(dto));
@@ -84,7 +75,6 @@ namespace Books.Application.Services
             if (entity == null)
                 throw new EntityNotFoundException("Libro no encontrado");
 
-            // Regla: autor debe existir
             if (!_authorRepository.ExistsById(dto.AuthorId.Value))
                 throw new AuthorNotRegisteredException();
 
@@ -97,7 +87,6 @@ namespace Books.Application.Services
             _bookRepository.Update(entity);
         }
 
-        // DELETE
         public void Delete(int id)
         {
             var entity = _bookRepository.GetById(id);

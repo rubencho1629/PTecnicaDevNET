@@ -17,19 +17,19 @@ namespace Books.Api
         {
             var container = new UnityContainer();
 
-            // DbContext
+         
             container.RegisterType<BooksDbContext>();
 
-            // Repositories
+       
             container.RegisterType<IAuthorRepository, AuthorRepository>();
             container.RegisterType<IBookRepository, BookRepository>();
 
-            // Services
+        
             container.RegisterType<IAuthorService, AuthorService>();
             container.RegisterType<IBookService, BookService>();
 
-            // Settings (safe read)
-            var maxBooks = 100; // valor por defecto
+          
+            var maxBooks = 100; 
             var maxBooksSetting = ConfigurationManager.AppSettings["MaxBooksAllowed"];
 
             if (!string.IsNullOrWhiteSpace(maxBooksSetting))

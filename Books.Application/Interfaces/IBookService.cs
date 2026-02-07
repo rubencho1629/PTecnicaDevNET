@@ -9,6 +9,7 @@ namespace Books.Application.Interfaces
 
         IEnumerable<BookResponseDto> GetAll();
         BookResponseDto GetById(int id);
+
         void Update(int id, UpdateBookRequestDto dto);
         void Delete(int id);
     }

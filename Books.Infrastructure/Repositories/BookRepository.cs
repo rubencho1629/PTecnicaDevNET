@@ -21,6 +21,21 @@ namespace Books.Infrastructure.Repositories
             return _context.Books.Count();
         }
 
+        public Book GetById(int id)
+        {
+            return _context.Books
+                .Include(b => b.Author)
+                .FirstOrDefault(b => b.Id == id);
+        }
+
+        public IEnumerable<Book> GetAll()
+        {
+            return _context.Books
+                .AsNoTracking()
+                .Include(b => b.Author)
+                .ToList();
+        }
+
         public void Add(Book book)
         {
             _context.Books.Add(book);
@@ -40,21 +55,6 @@ namespace Books.Infrastructure.Repositories
 
             _context.Books.Remove(entity);
             _context.SaveChanges();
-        }
-
-        public Book GetById(int id)
-        {
-            return _context.Books
-                .Include(b => b.Author)
-                .FirstOrDefault(b => b.Id == id);
-        }
-
-        public IEnumerable<Book> GetAll()
-        {
-            return _context.Books
-                .AsNoTracking()
-                .Include(b => b.Author)
-                .ToList();
         }
     }
 }
